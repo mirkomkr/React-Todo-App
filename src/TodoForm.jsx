@@ -10,26 +10,19 @@ export default function TodoForm({ onAddTodo, onEditTodo, currentTodo }) {
     } else {
       setNewTodo({ text: '', date: '' });
     }
-    setErrorMessage(''); // Resetta l'errore
+    setErrorMessage('');
   }, [currentTodo]);
 
   const handleAddTodo = (e) => {
     e.preventDefault();
-    setErrorMessage(''); // Resetta l'errore precedente
+    setErrorMessage('');
 
-    // Controllo campi vuoti
     if (!newTodo.text.trim()) {
       setErrorMessage("Il campo 'Todo' non può essere vuoto.");
       return;
     }
-    if (!newTodo.date) {
-      setErrorMessage("Devi inserire una data.");
-      return;
-    }
-    
-    // Controllo data antecedente
     const today = new Date().toISOString().split('T')[0];
-    if (newTodo.date < today) {
+    if (newTodo.date && newTodo.date < today) {
       setErrorMessage("La data non può essere antecedente a quella odierna.");
       return;
     }
@@ -37,12 +30,7 @@ export default function TodoForm({ onAddTodo, onEditTodo, currentTodo }) {
     if (currentTodo) {
       onEditTodo(newTodo);
     } else {
-      const todoWithDate = {
-        ...newTodo,
-        id: Date.now(),
-        completed: false,
-      };
-      onAddTodo(todoWithDate);
+      onAddTodo(newTodo);
     }
     
     setNewTodo({ text: '', date: '' });
@@ -50,7 +38,7 @@ export default function TodoForm({ onAddTodo, onEditTodo, currentTodo }) {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setNewTodo((prev) => ({ ...prev, [name]: value }));
+    setNewTodo(prev => ({ ...prev, [name]: value }));
   };
 
   return (
