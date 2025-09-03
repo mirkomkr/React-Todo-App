@@ -1,12 +1,30 @@
-# React + Vite
+# React-Todo-App
+Un'applicazione per la gestione dei compiti creata con React, che dimostra una solida conoscenza dei principali hooks (useState, useReducer, useEffect). Il progetto include funzionalità di aggiunta, cancellazione e modifica dei compiti. L'app è responsive, e i dati sono salvati localmente con localStorage per garantire la persistenza.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Tecnologie Utilizzate
+* **React**: Per la costruzione dell'interfaccia utente.
+* **React Hooks**: `useState`, `useReducer`, `useEffect` per la gestione dello stato e degli effetti.
+* **Local Storage**: Per la persistenza dei dati.
+* **CSS**: Per lo stile e la responsività.
 
-Currently, two official plugins are available:
+## Funzionalità Chiave
+* Aggiunta di nuovi compiti con data.
+* Eliminazione dei compiti esistenti.
+* Validazione dell'input per garantire che i campi non siano vuoti.
+* Controllo della data per prevenire l'inserimento di compiti nel passato.
+* Design completamente responsive che si adatta a schermi di diverse dimensioni.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Come Avviare il Progetto
+1.  Clona questo repository:
+    `git clone https://github.com/mirkomkr/React-Todo-App.git`
+2.  Vai alla directory del progetto:
+    `cd React-Todo-App`
+3.  Installa le dipendenze:
+    `npm install`
+4.  Avvia l'app in modalità sviluppo:
+    `npm run dev`
 
-## Expanding the ESLint configuration
+L'app sarà disponibile all'indirizzo `http://localhost:5173`.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Autore
+* **Il tuo nome** - [GitHub](https://github.com/il-tuo-nome-utente) | [LinkedIn](https://linkedin.com/in/il-tuo-nome-utente)
