@@ -39,5 +39,5 @@ The app will be available at `http://localhost:5173`.
 
 ## ✍️ Author
 * **Mirko Passeri**
-    * [GitHub](https://github.com/your-github-profile)
+    * [GitHub](https://github.com/mirkomkr)
     * [LinkedIn](https://www.linkedin.com/in/mirko-passeri/)
