@@ -1,3 +1,5 @@
+/* App.css */
+
 /* Stili generali del corpo */
 body {
   font-family: Arial, sans-serif;
@@ -100,6 +102,30 @@ h1 {
   margin-left: 20px;
 }
 
+/* Stili per il contenitore dei pulsanti */
+.todo-buttons {
+  display: flex;
+  gap: 10px;
+  margin-left: 20px;
+}
+
+/* Stili per il pulsante Modifica */
+.edit-button {
+  background-color: #ffc107; /* Giallo */
+  color: #212529;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-weight: bold;
+}
+
+.edit-button:hover {
+  background-color: #e0a800;
+}
+
+/* Stili per il pulsante Cancella */
 .delete-button {
   background-color: #dc3545; /* Rosso */
   color: white;
@@ -109,7 +135,6 @@ h1 {
   cursor: pointer;
   transition: background-color 0.2s ease;
   font-weight: bold;
-  margin-left: 20px;
 }
 
 .delete-button:hover {
@@ -158,10 +183,17 @@ h1 {
     margin-top: 5px;
   }
 
-  /* Aggiungi margine al bottone di cancellazione per distanziarlo */
-  .delete-button {
+  /* Adatta il contenitore dei pulsanti */
+  .todo-buttons {
     margin-left: 0;
     margin-top: 10px;
-    width: 100%; /* Rendi il bottone a tutta larghezza */
+    gap: 10px;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .edit-button,
+  .delete-button {
+    width: 50%;
   }
 }

@@ -1,56 +1,80 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-export default function TodoForm({ onAddTodo }) {
-  const [errorMessage, setErrorMessage] = useState('');
+export default function TodoForm({ onAddTodo, onEditTodo, currentTodo }) {
   const [newTodo, setNewTodo] = useState({ text: '', date: '' });
+  const [errorMessage, setErrorMessage] = useState('');
+
+  useEffect(() => {
+    if (currentTodo) {
+      setNewTodo(currentTodo);
+    } else {
+      setNewTodo({ text: '', date: '' });
+    }
+    setErrorMessage(''); // Resetta l'errore
+  }, [currentTodo]);
 
   const handleAddTodo = (e) => {
     e.preventDefault();
+    setErrorMessage(''); // Resetta l'errore precedente
 
-    const isInputValid = newTodo.text.trim() !== '' && newTodo.date !== '';
-
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-
-    const taskDate = new Date(newTodo.date);
-    taskDate.setHours(0, 0, 0, 0);
-
-    const isDateValid = taskDate >= today;
-
-    if (isInputValid && isDateValid) {
-      onAddTodo(newTodo);
-      setNewTodo({ text: '', date: '' });
-      setErrorMessage('');
-    } else {
-      if (!isInputValid) {
-        setErrorMessage('Per favore, compila tutti i campi.');
-      } else if (!isDateValid) {
-        setErrorMessage('La data non può essere nel passato.');
-      }
-      setTimeout(() => setErrorMessage(''), 3000);
+    // Controllo campi vuoti
+    if (!newTodo.text.trim()) {
+      setErrorMessage("Il campo 'Todo' non può essere vuoto.");
+      return;
     }
+    if (!newTodo.date) {
+      setErrorMessage("Devi inserire una data.");
+      return;
+    }
+    
+    // Controllo data antecedente
+    const today = new Date().toISOString().split('T')[0];
+    if (newTodo.date < today) {
+      setErrorMessage("La data non può essere antecedente a quella odierna.");
+      return;
+    }
+    
+    if (currentTodo) {
+      onEditTodo(newTodo);
+    } else {
+      const todoWithDate = {
+        ...newTodo,
+        id: Date.now(),
+        completed: false,
+      };
+      onAddTodo(todoWithDate);
+    }
+    
+    setNewTodo({ text: '', date: '' });
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setNewTodo((prev) => ({ ...prev, [name]: value }));
   };
 
   return (
     <>
-      <div className="form-section">
-        <label htmlFor="taskText">Compito:</label>
+      <form className="form-section" onSubmit={handleAddTodo}>
+        <label htmlFor="todo-text">Todo:</label>
         <input
           type="text"
-          id="taskText"
-          placeholder="Inserisci il tuo compito"
+          name="text"
+          id="todo-text"
+          placeholder="Aggiungi un nuovo task"
           value={newTodo.text}
-          onChange={(e) => setNewTodo({ ...newTodo, text: e.target.value })}
+          onChange={handleChange}
         />
-        <label htmlFor="taskDate">Data:</label>
+        <label htmlFor="todo-date">Data:</label>
         <input
           type="date"
-          id="taskDate"
+          name="date"
+          id="todo-date"
           value={newTodo.date}
-          onChange={(e) => setNewTodo({ ...newTodo, date: e.target.value })}
+          onChange={handleChange}
         />
-        <button onClick={handleAddTodo}>Aggiungi</button>
-      </div>
+        <button type="submit">{currentTodo ? 'Modifica' : 'Aggiungi'}</button>
+      </form>
       {errorMessage && <p className="error-message">{errorMessage}</p>}
     </>
   );

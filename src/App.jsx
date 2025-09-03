@@ -1,61 +1,60 @@
-import { useEffect, useReducer } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
-import TodoList from './TodoList';
 import TodoForm from './TodoForm';
-
-const initialTodos = [
-  {
-    id: 1,
-    text: 'Imparare React e i suoi hook',
-    date: '2025-09-15'
-  },
-  {
-    id: 2,
-    text: 'Completare il progetto della Todo List',
-    date: '2025-09-20'
-  },
-  {
-    id: 3,
-    text: 'Esplorare nuovi concetti di React',
-    date: '2025-09-30'
-  }
-];
-
- function getInitialTodos() {
-   const savedTodos = localStorage.getItem('todos');
-   if (savedTodos !== null) {
-     return JSON.parse(savedTodos);
-   } else {
-     return initialTodos;
-   }
- }
-
- function todoReducer(todos, action) {
-  switch (action.type) {
-    case 'ADD_TODO':
-      return [...todos, action.payload];
-    case 'DELETE_TODO':
-      return todos.filter(todo => todo.id !== action.payload);
-    default:
-      return todos;
-  }
-}
+import TodoList from './TodoList';
 
 function App() {
-const [todos, dispatch] = useReducer(todoReducer, getInitialTodos());
+  const [todos, setTodos] = useState([]);
+  const [editingTodo, setEditingTodo] = useState(null);
 
-useEffect(() => {localStorage.setItem('todos', JSON.stringify(todos));},[todos]);
+  // Carica i dati dal localStorage all'avvio
+  useEffect(() => {
+    const savedTodos = JSON.parse(localStorage.getItem('todos'));
+    if (savedTodos) {
+      setTodos(savedTodos);
+    }
+  }, []);
 
-  const handleAddTodo = (newTodo) => {dispatch({type: 'ADD_TODO', payload: {...newTodo, id: Date.now()}});
-}
- const handleDeleteTodo = (deleteTodo) => {dispatch({type: 'DELETE_TODO', payload:deleteTodo})}
+  // Salva i dati nel localStorage ogni volta che i 'todos' cambiano
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos));
+  }, [todos]);
 
-return (
-    <>
-      <h1>Todo-State | Gestisci il tuo Stato, Gestisci la tua Giornata</h1>
-      <TodoForm onAddTodo={handleAddTodo} />
-      <TodoList todos={todos} handleDeleteTodo={handleDeleteTodo} />
-    </>
+  // Aggiunge un nuovo todo
+  const handleAddTodo = (newTodo) => {
+    setTodos([...todos, newTodo]);
+  };
+
+  // Cancella un todo
+  const handleDeleteTodo = (id) => {
+    setTodos(todos.filter(todo => todo.id !== id));
+  };
+
+  // Avvia la modalità di modifica
+  const startEditing = (todo) => {
+    setEditingTodo(todo);
+  };
+
+  // Gestisce la modifica di un todo
+  const handleEditTodo = (updatedTodo) => {
+    setTodos(todos.map((todo) => (todo.id === updatedTodo.id ? updatedTodo : todo)));
+    setEditingTodo(null); // Resetta la modalità di modifica
+  };
+
+  return (
+    <div className="App">
+      <h1>Todo List</h1>
+      <TodoForm
+        onAddTodo={handleAddTodo}
+        onEditTodo={handleEditTodo}
+        currentTodo={editingTodo}
+      />
+      <TodoList
+        todos={todos}
+        onDeleteTodo={handleDeleteTodo}
+        onStartEditing={startEditing}
+      />
+    </div>
   );
 }
 

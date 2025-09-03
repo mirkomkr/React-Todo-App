@@ -1,16 +1,16 @@
-import React from "react";
+import TodoItem from './TodoItem';
 
-export default function Todolist({ todos, handleDeleteTodo }) {
-    return (
-        <ul className="todo-list">
-            {todos.map(todo => (
-                <li key={todo.id} className="todo-item">
-                    <span className="todo-text">{todo.text}</span> {/* Testo del compito */}
-                    {todo.date && <span className="todo-date"> (Scade il: {todo.date})</span>} {/* Data, mostrata solo se esiste */}
-                    <button onClick={() => handleDeleteTodo(todo.id)} className="delete-button">Cancella</button>
-                </li>
-            ))}
-        </ul>
-    );
+export default function TodoList({ todos, onDeleteTodo, onStartEditing }) {
+  return (
+    <ul className="todo-list">
+      {todos.map((todo) => (
+        <TodoItem
+          key={todo.id}
+          todo={todo}
+          onDeleteTodo={onDeleteTodo}
+          onStartEditing={onStartEditing}
+        />
+      ))}
+    </ul>
+  );
 }
-
