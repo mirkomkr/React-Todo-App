@@ -1,30 +1,43 @@
-# React-Todo-App
-Un'applicazione per la gestione dei compiti creata con React, che dimostra una solida conoscenza dei principali hooks (useState, useReducer, useEffect). Il progetto include funzionalità di aggiunta, cancellazione e modifica dei compiti. L'app è responsive, e i dati sono salvati localmente con localStorage per garantire la persistenza.
+# React Todo App
 
-## Tecnologie Utilizzate
-* **React**: Per la costruzione dell'interfaccia utente.
-* **React Hooks**: `useState`, `useReducer`, `useEffect` per la gestione dello stato e degli effetti.
-* **Local Storage**: Per la persistenza dei dati.
-* **CSS**: Per lo stile e la responsività.
+## 📚 Project Overview
 
-## Funzionalità Chiave
-* Aggiunta di nuovi compiti con data.
-* Eliminazione dei compiti esistenti.
-* Validazione dell'input per garantire che i campi non siano vuoti.
-* Controllo della data per prevenire l'inserimento di compiti nel passato.
-* Design completamente responsive che si adatta a schermi di diverse dimensioni.
+A modern and responsive Todo List application built with **React**. This project was developed to showcase core front-end development skills, including state management with React Hooks and data persistence. It's a clean, user-friendly app that helps users track their tasks and deadlines.
 
-## Come Avviare il Progetto
-1.  Clona questo repository:
+## 🚀 Key Features
+
+* **Create and Manage Tasks**: Easily add new tasks with a due date.
+* **Delete Tasks**: Remove completed or unwanted tasks.
+* **Persistent Data**: Tasks are saved to the browser's **Local Storage**, so they won't be lost on page refresh.
+* **Input Validation**: The app prevents empty tasks and validates dates to ensure they aren't in the past.
+* **Responsive Design**: The layout adapts seamlessly to different screen sizes, providing an excellent user experience on both mobile and desktop devices.
+* **Planned Feature**: The ability to modify existing tasks is a planned feature for a future update.
+
+## 🛠️ Technologies Used
+
+* **React**: For building the user interface.
+* **React Hooks**: `useState`, `useReducer`, and `useEffect` for efficient state management and side effects.
+* **HTML & CSS**: For a clean, semantic structure and modern styling.
+
+## 💻 How to Run the App
+
+### Prerequisites
+Make sure you have Node.js and npm installed.
+
+### Instructions
+
+1.  Clone the repository:
     `git clone https://github.com/mirkomkr/React-Todo-App.git`
-2.  Vai alla directory del progetto:
+2.  Navigate to the project directory:
     `cd React-Todo-App`
-3.  Installa le dipendenze:
+3.  Install the dependencies:
     `npm install`
-4.  Avvia l'app in modalità sviluppo:
+4.  Start the development server:
     `npm run dev`
 
-L'app sarà disponibile all'indirizzo `http://localhost:5173`.
+The app will be available at `http://localhost:5173`.
 
-## Autore
-* **Il tuo nome** - [GitHub](https://github.com/il-tuo-nome-utente) | [LinkedIn](https://linkedin.com/in/il-tuo-nome-utente)
+## ✍️ Author
+* **Mirko Passeri**
+    * [GitHub](https://github.com/your-github-profile)
+    * [LinkedIn](https://www.linkedin.com/in/mirko-passeri/)
