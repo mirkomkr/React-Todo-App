@@ -1,0 +1,167 @@
+/* Stili generali del corpo */
+body {
+  font-family: Arial, sans-serif;
+  color: #f0f2f5; /* Testo chiaro */
+  background-color: #121212; /* Sfondo molto scuro */
+  margin: 0;
+  padding: 20px;
+}
+
+/* Stili per il contenitore principale (dove si trova l'app) */
+#root {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #1e1e1e; /* Sfondo scuro per il contenitore */
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Ombra più evidente */
+}
+
+/* Stili per il titolo */
+h1 {
+  text-align: center;
+  color: #fff; /* Bianco */
+  margin-bottom: 20px;
+  font-size: 2em;
+  font-weight: 600;
+}
+
+/* Stili per il form di aggiunta */
+.form-section {
+  display: flex;
+  gap: 15px; /* Spazio tra gli input e il bottone */
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+.form-section label {
+  color: #aaa; /* Grigio chiaro */
+  font-weight: bold;
+}
+
+.form-section input[type="text"],
+.form-section input[type="date"] {
+  padding: 10px;
+  border: 1px solid #444; /* Bordo scuro */
+  background-color: #2a2a2a; /* Sfondo scuro per gli input */
+  color: #eee; /* Testo chiaro negli input */
+  border-radius: 5px;
+  flex-grow: 1;
+}
+
+.form-section input::placeholder {
+  color: #888; /* Colore più chiaro per il placeholder */
+}
+
+.form-section button {
+  padding: 10px 20px;
+  background-color: #007bff; /* Blu del bottone */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-weight: bold;
+}
+
+.form-section button:hover {
+  background-color: #0056b3;
+}
+
+/* Stili per la lista dei compiti */
+.todo-list {
+  list-style: none; /* Rimuove i bullet point */
+  padding: 0;
+  margin: 20px 0;
+}
+
+.todo-item {
+  background-color: #2a2a2a; /* Sfondo scuro per ogni compito */
+  border: 1px solid #444; /* Bordo scuro */
+  padding: 15px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Ombra adatta al tema scuro */
+}
+
+.todo-item .todo-text {
+  flex-grow: 1;
+  font-weight: 400;
+  font-size: 1.1em;
+  color: #f0f2f5; /* Testo del compito chiaro */
+}
+
+.todo-item .todo-date {
+  color: #aaa; /* Colore chiaro per la data */
+  font-size: 0.9em;
+  margin-left: 20px;
+}
+
+.delete-button {
+  background-color: #dc3545; /* Rosso */
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-weight: bold;
+  margin-left: 20px;
+}
+
+.delete-button:hover {
+  background-color: #c82333;
+}
+
+.error-message {
+  color: #d9534f; /* Un rosso acceso per catturare l'attenzione */
+  font-size: 14px;
+  margin-top: 10px;
+  padding: 5px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Media Query per schermi piccoli (es. smartphone) */
+@media (max-width: 600px) {
+  /* Modifiche al form per renderlo più leggibile */
+  .form-section {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  /* Rimuovi i margini per gli elementi del form */
+  .form-section label,
+  .form-section input,
+  .form-section button {
+    margin: 5px 0;
+  }
+
+  /* Modifiche al titolo per schermi più piccoli */
+  h1 {
+    font-size: 1.5em;
+  }
+
+  /* Modifiche alla lista per schermi più piccoli */
+  .todo-item {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+  }
+  
+  /* Rimuovi i margini interni tra testo e data */
+  .todo-item .todo-date {
+    margin-left: 0;
+    margin-top: 5px;
+  }
+
+  /* Aggiungi margine al bottone di cancellazione per distanziarlo */
+  .delete-button {
+    margin-left: 0;
+    margin-top: 10px;
+    width: 100%; /* Rendi il bottone a tutta larghezza */
+  }
+}
